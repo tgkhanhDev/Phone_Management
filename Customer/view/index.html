@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- fontAwe  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- my Tailwind  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.0.0-alpha.1/tailwind.min.css"
+      integrity="sha512-NUFPUFpyuQGekaUg+cNAh8qN0bwd04x5tBgYRT9iNdrUV38gVu4QU0jlx1CSBKPOnp5invOm0HPW4+cXqjBeAQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- css  -->
+    <link rel="stylesheet" href="./scss/index.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="bg-opacity-90 fixed mx-auto w-full">
+        <div class="box mx-auto px-auto border border-red-400 text-white">
+          <div class="flex justify-between">
+            <!-- Logo  -->
+            <!-- primary nav  -->
+            <div class="flex space-x-16 px-3">
+              <a href="#" class="logo flex items-center space-x-2">
+                <i class="text-2xl fa fa-robot"></i>
+                <span class="font-bold">Cyber Phone</span>
+              </a>
+              <div class="hidden md:flex space-x-4 px-3 py-2">
+                <a
+                  href="#"
+                  class="flex flex-col items-center px-3 py-2 hover:text-gray-400"
+                >
+                  <i class="text-2xl fa fa-home"></i>
+                  <span>Home</span>
+                </a>
+                <a href="#" class="flex flex-col items-center px-3 py-2">
+                  <i class="text-2xl fa fa-user-cog"></i>
+                  <span>Admin Portal</span>
+                </a>
+              </div>
+            </div>
+            <!-- secondary nav  -->
+            <div class="hidden md:flex px-3 py-2">
+              <a
+                href="#"
+                class="flex flex-col items-center px-3 py-2 relative sec-nav"
+              >
+                <i class="text-2xl fa fa-shopping-cart"></i>
+                <span>Cart</span>
+                <div class="rounded-full w-4 bg-white absolute top-1 right-1">
+                  <span
+                    class="flex justify-center text-xs text-black font-bold"
+                    id="itemNumber"
+                    >0</span
+                  >
+                </div>
+              </a>
+            </div>
+            <!-- Mobile button   -->
+            <div class="flex md:hidden py-3 px-5">
+              <button class="mobile-menu-button border">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="w-8 h-8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- Mobile Menu  -->
+          <div class="mobile-menu md:hidden">
+            <div class="block md:hidden py-2 px-4">
+              <a
+                href="#"
+                class="flex flex-col items-center px-3 hover:text-gray-400"
+              >
+                <i class="text-2xl fa fa-home"></i>
+                <span>Home</span>
+              </a>
+            </div>
+            <div class="block md:hidden py-2 px-4">
+              <a href="#" class="flex flex-col items-center px-3">
+                <i class="text-2xl fa fa-user-cog"></i>
+                <span>Admin Portal</span>
+              </a>
+            </div>
+            <div class="block md:hidden py-2 px-4">
+              <a href="#" class="flex flex-col items-center px-3 relative">
+                <i class="text-2xl fa fa-shopping-cart"></i>
+                <span>Cart</span>
+                <div class="rounded-full w-4 bg-white absolute ml-5">
+                  <span
+                    class="flex justify-center text-xs text-black font-bold"
+                    id="itemNumber"
+                  >
+                    0
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <body>
+      <!-- main page  -->
+      <section id="top-page" class="w-full h-full">
+        <div class="flex justify-center flex-wrap pt-28 box">
+          <!-- phone description  -->
+          <div class="phone-desc flex flex-col gap-4 flex-auto w-2/5 px-auto">
+            <h1 class="text-5xl text-gray-100">Galaxy S22｜S22+</h1>
+            <div class="rate"></div>
+            <p class="text-xl text-gray-400">
+              Get select Galaxy Buds2 or Buds Live on us with Galaxy S22+. Plus,
+              get up to $700 enhanced trade-in credit. For a limited time. Get
+              hands on with the S22 and S22+. See in AR >>
+            </p>
+            <h5 class="text-2xl text-gray-100">1325$</h5>
+            <button>Find Out More</button>
+          </div>
+          <!-- image  -->
+          <img
+            class="w-4/5 flex-auto xl:w-2/5 px-auto flex-wrap"
+            src="../CAPSTONE_IMG/header/s22.png"
+            alt=""
+          />
+        </div>
+      </section>
+
+      <section class="w-full h-full"></section>
+    </body>
+    <footer>
+      <section class="social">
+        <div class="box flex justify-center py-4 px-6 gap-10">
+          <div class="desc">
+            <p>Get connect with us throught social network:</p>
+          </div>
+          <div class="icon flex gap-4 items-center">
+            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-twitter"></i>
+            <i class="fab fa-google"></i>
+            <i class="fab fa-instagram"></i>
+            <i class="fab fa-linkedin"></i>
+            <i class="fab fa-github"></i>
+          </div>
+        </div>
+      </section>
+      <hr />
+      <section class="aboutus box flex">
+        <div class="cyberphone flex flex-col flex-auto w-1/4 gap-3 py-5">
+          <div class="title flex items-center gap-3 uppercase">
+            <i class="text-2xl fa fa-robot"></i>
+            <p class="font-bold">Cyber Phone</p>
+          </div>
+          <p>
+            We pride ourselves on our efficiency and hard work, but most of all
+            our ability to source you the best quality and best value products
+            and devices in the market.
+          </p>
+        </div>
+        <div class="brand flex flex-col flex-auto w-1/4 py-auto gap-3 py-5">
+          <div class="title">
+            <p class="font-bold uppercase">Brands</p>
+          </div>
+          <a href="#">iPhone</a>
+          <a href="#">Sumsung</a>
+          <a href="#">Xiaomi</a>
+          <a href="#">Oppo</a>
+        </div>
+        <div class="useful-link flex flex-col flex-auto w-1/4 gap-3 py-5">
+          <div class="title">
+            <p class="font-bold uppercase">Useful links</p>
+          </div>
+          <a href="#">Pricing</a>
+          <a href="#">Setting</a>
+          <a href="#">Orders</a>
+          <a href="#">Help</a>
+        </div>
+        <div class="contact flex flex-col flex-auto w-1/4 gap-3 py-5">
+          <div class="title">
+            <p class="font-bold uppercase">Contact</p>
+          </div>
+          <div class="flex">
+            <i class="fa fa-home"></i>
+            <p>Da Nang, Thanh Khe, VN</p>
+          </div>
+          <div class="flex">
+            <i class="fa fa-envelope"></i>
+            <p>cyberphone@mail.com</p>
+          </div>
+          <div class="flex">
+            <i class="fa fa-phone"></i>
+            <p> + 01 234 567 88</p>
+          </div>
+          <div class="flex">
+            <i class="fa fa-fax"></i>
+            <p>+ 01 234 567 89</p>
+          </div>
+        </div>
+      </section>
+      <section class="copyright"></section>
+    </footer>
+    <script src="../controller/main.js"></script>
+  </body>
+</html>
