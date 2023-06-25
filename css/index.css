@@ -1,0 +1,50 @@
+.view {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(https://shopping-cart-demo2.vercel.app/customer/view/img/bg.jpg);
+  background-size: cover;
+}
+.view .pic {
+  width: 250px;
+}
+.view .pic .homeEffect {
+  /* opacity: 95%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 20px auto;
+  width: 250px;
+  height: 250px;
+  background: rgb(211, 215, 216);
+  border-radius: 75px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 20px;
+  font-weight: lighter;
+  letter-spacing: 2px;
+  transition: 1s;
+}
+.view .pic h1 {
+  position: relative;
+  transition: 0.5s;
+}
+.view .pic h1::before {
+  content: "";
+  background-color: #f3ce5e;
+  position: absolute;
+  height: 3px;
+  width: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.5s;
+}
+.view .pic:hover h1::before {
+  width: 60%;
+}
+.view .pic:hover h1 {
+  color: #f3ce5e;
+}
+.view .pic:hover .homeEffect {
+  transform: translateY(-15px);
+}/*# sourceMappingURL=index.css.map */

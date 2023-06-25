@@ -1,0 +1,57 @@
+*{
+    box-sizing: border-box
+}
+#spinner{
+    width: 100vw;
+    height: 100vh;
+    background-color: bisque;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 15;
+    // display: flex;
+    justify-content: center;
+    align-items: center;
+}
+header{
+    background: rgba(0, 0, 0, 0.8);
+}
+.container{
+    width:80vw;
+    margin: auto;
+}
+.product{
+    padding:50px;
+    .product__content{
+       background-color: rgba(29, 38, 113, 0.7);
+       border-radius: 12px 12px 0 0 ;
+    
+    }
+    .buton__content{
+        background-color: #294d5c;
+        color: rgba(255, 255, 255, 0.85);
+        transition: 0.5s;
+        
+    }
+    .content__buton{
+        i{
+            transition: 0.5s;
+        }
+        span{
+            font-size: 15px;
+        }
+        &:hover .buton__content{
+            background-color: white;
+            color: #294d5c;
+        }
+        &:hover i{
+            color: #294d5c;
+        }
+        
+    }
+}
+footer{
+    background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.8));
+
+}
