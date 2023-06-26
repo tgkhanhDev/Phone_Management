@@ -21,8 +21,10 @@ header nav a:hover:not(.logo) #itemNumber {
 }
 
 .box {
-  padding-left: 15%;
-  padding-right: 15%;
+  margin: 0 auto;
+  width: 90%;
+  max-width: 1200px;
+  
 }
 
 footer {
