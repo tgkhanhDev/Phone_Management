@@ -17,14 +17,12 @@ header nav a:hover:not(.logo) #itemNumber {
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 70vh;
+  min-height: 70vh;
 }
 
 .box {
-  margin: 0 auto;
-  width: 90%;
-  max-width: 1200px;
-  
+  padding-left: 15%;
+  padding-right: 15%;
 }
 
 footer {
@@ -39,4 +37,15 @@ footer .aboutus .brand, footer .aboutus .useful-link {
 }
 footer a {
   text-decoration: underline;
+}
+
+#frame .absolute {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+#frame:hover .absolute {
+  opacity: 1;
+  visibility: visible;
 }/*# sourceMappingURL=index.css.map */
