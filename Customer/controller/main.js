@@ -36,12 +36,15 @@ function SelectionChange() {
 
 //===============================================================
 
+//Lấy ra product từ API link
 fetchProductList = () => {
   products.getList()
     .then((res) => {
-      console.log("res", res);
+      // renderProductList(res.data); 
+      console.log("res", res.data);
     })
     .catch((err) => {
 
     });
 }
+fetchProductList()
