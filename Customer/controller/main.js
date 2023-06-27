@@ -22,6 +22,7 @@ scrollFunc = () => {
 // option list 
 let option = document.getElementById("option-value");
 option.addEventListener('change', SelectionChange);
+
 function SelectionChange() {
   const optionValue = document.getElementById("option-value").value;
   //pick class toggle
@@ -29,9 +30,9 @@ function SelectionChange() {
   let samFramedId = document.getElementById("samsung-frame");
   let xiaoFramedId = document.getElementById("xiaomi-frame");
   //if
-  appFramedId.style.display = ((optionValue === "apple" || optionValue === "all") ? "grid" : "none");
-  samFramedId.style.display = ((optionValue === "samsung" || optionValue === "all") ? "grid" : "none");
-  xiaoFramedId.style.display = ((optionValue === "xiaomi" || optionValue === "all") ? "grid" : "none");
+  ((optionValue === "apple" || optionValue === "all") ? fetchProductList() : "none");
+  ((optionValue === "samsung" || optionValue === "all") ? fetchProductList() : "none");
+  ((optionValue === "xiaomi" || optionValue === "all") ? fetchProductList() : "none");
 }
 
 //===============================================================
@@ -40,7 +41,7 @@ function SelectionChange() {
 fetchProductList = () => {
   products.getList()
     .then((res) => {
-      // renderProductList(res.data); 
+      renderProductList(res.data); 
       console.log("res", res.data);
     })
     .catch((err) => {
@@ -48,3 +49,11 @@ fetchProductList = () => {
     });
 }
 fetchProductList()
+
+
+//Cart==================
+a=() =>{
+  document.getElementById("cartLayer").display="none";
+  
+}
+//=====================

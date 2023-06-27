@@ -12,11 +12,12 @@ renderProductList = (productArr) => {
     var contentHTML_IP="";
     var contentHTML_SS="";
     var contentHTML_XM="";
+    var contentHTML_ALL="";
     productArr.forEach(item => {
         var productID= returnIDforEachType(item);
         var content=`
             <div
-                class="relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl" id="frame"
+                class="phoneItem    relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl justify-between" id="${productID}"
               >
                 <!-- layer  -->
                 <div
@@ -49,7 +50,12 @@ renderProductList = (productArr) => {
                 </div>
                 <div class="flex flex-col justify-center items-center">
                   <p class="font-bold">${item.name}</p>
-                  <p class="">$${item.price}</p>
+                  <div class="flex gap-2">
+                    <!-- original price -->
+                  <p class="text-lg">$${item.price}</p>
+                    <!-- Fake no-discount price  -->
+                  <p class="text-red-500 line-through">$${parseInt(item.price) + 300}</p>
+                </div>
                 </div>
                 <div>
                   <div
@@ -79,9 +85,23 @@ renderProductList = (productArr) => {
         }else if(item.type === "Xiaomi"){
             contentHTML_XM+=content;
         }
+        contentHTML_ALL+= content
     }
     );
-    document.getElementById("apple-frame").innerHTML = contentHTML_IP;
-    document.getElementById("samsung-frame").innerHTML = contentHTML_SS;
-    document.getElementById("xiaomi-frame").innerHTML = contentHTML_XM;
+
+    const optionValue = document.getElementById("option-value").value;
+    if(optionValue === "apple"){
+        document.getElementById("item-frame").innerHTML = contentHTML_IP;
+    }else if (optionValue === "samsung"){
+        document.getElementById("item-frame").innerHTML = contentHTML_SS;
+    }else if (optionValue === "xiaomi"){
+        document.getElementById("item-frame").innerHTML = contentHTML_XM;
+    }else if (optionValue ==="all"){
+        document.getElementById("item-frame").innerHTML = contentHTML_ALL;
+    }
 };
+
+
+//create fake price
+var discountPercentage
+//==============================

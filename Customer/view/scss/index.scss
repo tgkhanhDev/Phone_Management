@@ -49,17 +49,38 @@ footer{
     text-decoration: underline;
   }
 }
-#frame{
+.phoneItem{
   min-height: 420px;
 }
 
-#frame .absolute {
+.phoneItem .absolute {
   opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
 }
 
-#frame:hover .absolute {
+.phoneItem:hover .absolute {
   opacity: 1;
   visibility: visible;
+}
+
+
+// cartlayer
+#navbar{
+  #cartLayer{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    transition: 1s;
+  }
+  #cartPage{
+    position: absolute;
+    top:10vh;
+    right: 0;
+    height: 90vh;
+    width: 30vw;
+  }
 }
