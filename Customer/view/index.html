@@ -55,9 +55,8 @@
             <!-- secondary nav  -->
             <div class="hidden md:flex px-3 py-2">
               <a
-                href="#"
                 class="flex flex-col items-center px-3 py-2 relative sec-nav z-10"
-                onclick="a()"
+                onclick="showPage()"
               >
                 <i class="text-2xl fa fa-shopping-cart"></i>
                 <span>Cart</span>
@@ -70,8 +69,14 @@
                 </div>
               </a>
               <!-- Cart page  -->
-              <div id="cartLayer" class="bg-black bg-opacity-70"></div>
-              <div id="cartPage" class="hidden bg-white z-10 text-black py-6 relative overflow-auto">
+              <div
+                id="cartLayer"
+                class="hidden bg-black bg-opacity-70 opacity-0"
+              ></div>
+              <div
+                id="cartPage"
+                class="hidden bg-white z-10 text-black py-6 relative overflow-auto opacity-0"
+              >
                 <div class="cart-title flex flex-col gap-2 px-6 py-5">
                   <p class="text-4xl">Shopping Cart</p>
                   <p class="text-gray-400">
@@ -79,14 +84,14 @@
                   </p>
                 </div>
                 <div id="cart-item">
-                  <div class="item ">
+                  <!-- <div class="item">
                     <div class="imgAndInfo flex">
                       <img
                         src="https://gaumobile.com/images/products/2022/09/15/large/637985738260801133_ip-14-pro-tim_1663227038.png"
                         alt="Photo"
                         width="50%"
                       />
-                      <div class="info flex flex-col gap-5 ">
+                      <div class="info flex flex-col gap-5">
                         <p class="font-bold">This is the title!!!</p>
                         <div class="desc">
                           <p>Screen:</p>
@@ -107,36 +112,7 @@
                       </div>
                       <div class="left font-bold">$0</div>
                     </div>
-                  </div>
-                  <div class="item">
-                    <div class="imgAndInfo flex">
-                      <img
-                        src="https://gaumobile.com/images/products/2022/09/15/large/637985738260801133_ip-14-pro-tim_1663227038.png"
-                        alt="Photo"
-                        width="50%"
-                      />
-                      <div class="info flex flex-col gap-5 ">
-                        <p class="font-bold">This is the title!!!</p>
-                        <div class="desc">
-                          <p>Screen:</p>
-                          <p>Back Camera:</p>
-                          <p>Font Camera:</p>
-                        </div>
-                        <a href="#" class="text-red-600 underline">Remove</a>
-                      </div>
-                    </div>
-                    <div class="quantity flex justify-between px-6 py-5">
-                      <div class="right flex gap-5">
-                        <p class="font-bold">Quantity:</p>
-                        <div class="plusAndMinus space-x-1">
-                          <i class="fa fa-minus-circle hover:text-blue-900"></i>
-                          <span id="itemNumber">0</span>
-                          <i class="fa fa-plus-circle hover:text-blue-900"></i>
-                        </div>
-                      </div>
-                      <div class="left font-bold">$0</div>
-                    </div>
-                  </div>
+                  </div> -->
                 </div>
                 <div class="absolute bg-gray-200 w-full my-8 px-6 py-10">
                   <div class="flex justify-between py-3">
@@ -301,71 +277,7 @@
             <option value="xiaomi">Xiaomi</option>
           </select>
           <div id="item-frame" class="mt-10 mb-10 grid grid-cols-4 gap-4">
-            <div
-              class="phoneItem relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl justify-between"
-              id=""
-            >
-              <!-- layer  -->
-              <div
-                class="absolute w-full h-full top-0 left-0 rounded-2xl bg-black bg-opacity-80 text-white py-4 px-6 flex flex-col justify-between"
-              >
-                <p class="w-full h-1/3 flex justify-center text-4xl">
-                  Specifications
-                </p>
-                <div class="screen flex flex-col gap-2">
-                  <p>Screen:</p>
-                  <p>Back Camera:</p>
-                  <p>Front Camera:</p>
-                </div>
-                <div class="detail flex justify-center">
-                  <a href="" class="underline"
-                    ><p>click here for more details</p></a
-                  >
-                </div>
-                <div class="inline-block flex justify-center">
-                  <button
-                    class="bg-yellow-600 px-4 py-2 rounded-2xl hover:bg-yellow-700 transition duration-150 ease-out hover:ease-in"
-                  >
-                    Add to cart
-                  </button>
-                </div>
-              </div>
-              <!-- ========== -->
-              <div class="w-full h-1/2">
-                <img
-                  src="https://gaumobile.com/images/products/2022/09/15/large/637985738260801133_ip-14-pro-tim_1663227038.png"
-                  alt="phoneimg"
-                  class="h-full w-full object-cover"
-                />
-              </div>
-              <div class="flex flex-col justify-center items-center">
-                <p class="font-bold">This is the title</p>
-                <div class="flex gap-2">
-                  <!-- original price -->
-                  <p class="text-lg">$1234</p>
-                  <!-- Fake no-discount price  -->
-                  <p class="text-red-500 line-through">$12345</p>
-                </div>
-              </div>
-              <div>
-                <div
-                  class="inline-block whitespace-no-wrap bg-gray-200 px-3 rounded"
-                >
-                  Tag
-                </div>
-              </div>
-              <p>Description:</p>
-              <div class="flex justify-between">
-                <div class="rate text-yellow-400">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                </div>
-                <div class="status text-green-700">In Stock</div>
-              </div>
-            </div>
+            <!-- Item hereeeeeeeee  -->
           </div>
         </div>
       </section>

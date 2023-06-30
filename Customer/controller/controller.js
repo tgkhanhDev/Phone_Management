@@ -1,21 +1,21 @@
-returnIDforEachType =(item) =>{
-    if(item.type === "Iphone"){
-        return "apple-frame";
-    }else if(item.type === "Samsung"){
-        return "samsung-frame";
-    }else if(item.type === "Xiaomi"){
-        return "xiaomi-frame";
-    }
-}
+returnIDforEachType = (item) => {
+  if (item.type === "Iphone") {
+    return "apple-frame";
+  } else if (item.type === "Samsung") {
+    return "samsung-frame";
+  } else if (item.type === "Xiaomi") {
+    return "xiaomi-frame";
+  }
+};
 
 renderProductList = (productArr) => {
-    var contentHTML_IP="";
-    var contentHTML_SS="";
-    var contentHTML_XM="";
-    var contentHTML_ALL="";
-    productArr.forEach(item => {
-        var productID= returnIDforEachType(item);
-        var content=`
+  var contentHTML_IP = "";
+  var contentHTML_SS = "";
+  var contentHTML_XM = "";
+  var contentHTML_ALL = "";
+  productArr.forEach((item) => {
+    var productID = returnIDforEachType(item);
+    var content = `
             <div
                 class="phoneItem    relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl justify-between" id="${productID}"
               >
@@ -37,7 +37,9 @@ renderProductList = (productArr) => {
                     >
                   </div>
                   <div class="inline-block flex justify-center">
-                    <button class="bg-yellow-600 px-4 py-2 rounded-2xl hover:bg-yellow-700 transition duration-150 ease-out hover:ease-in">Add to cart</button>
+                    <button class="bg-yellow-600 px-4 py-2 rounded-2xl hover:bg-yellow-700 transition duration-150 ease-out hover:ease-in" 
+                    onclick="addCart(${item.id})"
+                    >Add to cart</button>
                   </div>
                 </div>
                 <!-- ========== -->
@@ -49,12 +51,14 @@ renderProductList = (productArr) => {
                   />
                 </div>
                 <div class="flex flex-col justify-center items-center">
-                  <p class="font-bold">${item.name}</p>
+                  <p class="font-bold" id="item_name">${item.name}</p>
                   <div class="flex gap-2">
                     <!-- original price -->
                   <p class="text-lg">$${item.price}</p>
                     <!-- Fake no-discount price  -->
-                  <p class="text-red-500 line-through">$${parseInt(item.price) + 300}</p>
+                  <p class="text-red-500 line-through">$${
+                    parseInt(item.price) + 300
+                  }</p>
                 </div>
                 </div>
                 <div>
@@ -77,31 +81,31 @@ renderProductList = (productArr) => {
                 </div>
               </div>            
             </div>
-        `
-        if(item.type === "Iphone"){
-            contentHTML_IP+= content;
-        }else if(item.type === "Samsung"){
-            contentHTML_SS+=content;
-        }else if(item.type === "Xiaomi"){
-            contentHTML_XM+=content;
-        }
-        contentHTML_ALL+= content
+        `;
+    if (item.type === "Iphone") {
+      contentHTML_IP += content;
+    } else if (item.type === "Samsung") {
+      contentHTML_SS += content;
+    } else if (item.type === "Xiaomi") {
+      contentHTML_XM += content;
     }
-    );
+    contentHTML_ALL += content;
+  });
 
-    const optionValue = document.getElementById("option-value").value;
-    if(optionValue === "apple"){
-        document.getElementById("item-frame").innerHTML = contentHTML_IP;
-    }else if (optionValue === "samsung"){
-        document.getElementById("item-frame").innerHTML = contentHTML_SS;
-    }else if (optionValue === "xiaomi"){
-        document.getElementById("item-frame").innerHTML = contentHTML_XM;
-    }else if (optionValue ==="all"){
-        document.getElementById("item-frame").innerHTML = contentHTML_ALL;
-    }
+  const optionValue = document.getElementById("option-value").value;
+  if (optionValue === "apple") {
+    document.getElementById("item-frame").innerHTML = contentHTML_IP;
+  } else if (optionValue === "samsung") {
+    document.getElementById("item-frame").innerHTML = contentHTML_SS;
+  } else if (optionValue === "xiaomi") {
+    document.getElementById("item-frame").innerHTML = contentHTML_XM;
+  } else if (optionValue === "all") {
+    document.getElementById("item-frame").innerHTML = contentHTML_ALL;
+  }
 };
 
-
-//create fake price
-var discountPercentage
-//==============================
+// lấy dữ liệu từ local
+transferToLocal = (pushList, LocalName) => {
+  let data = JSON.stringify(pushList);
+  localStorage.setItem(LocalName, data);
+};
