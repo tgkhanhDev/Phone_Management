@@ -82,18 +82,8 @@ showPage = () => {
 };
 //=====================
 
-//Add to cart===========
+//Add to cart=============================================================
 var cartListItems = [];
-
-// lấy dữ liệu từ local
-transferToLocal(cartListItems, "CartList");
-
-//bỏ item vào Array
-pushCartItemtoArrByID = (id) => {};
-
-RenderNumOfitemInCart = () => {
-  document.getElementById("itemNumber").innerHTML = cartListItems.length + 1;
-};
 
 addCart = (productId) => {
   //lấy list ra rr so sánh với ID => xuất toàn bộ thông tin
@@ -104,6 +94,11 @@ addCart = (productId) => {
       res.data.forEach((item) => {
         if (item.id == productId) {
           cartListItems.push(res.data[i]);
+          //update số lượng
+          RenderNumOfitemInCart();
+
+          // update Item
+          renderCart();
         }
         i++;
       });
@@ -111,17 +106,65 @@ addCart = (productId) => {
     .catch((err) => {
       console.log(err);
     });
-  //update số lượng
-  RenderNumOfitemInCart();
-  // update Item
-  renderCart();
 };
 
 //======================
+// bỏ dữ liệu lên local
+transferToLocal(cartListItems, "CartList");
+
+//bỏ item vào Array
+pushCartItemtoArrByID = (id) => {};
+
+RenderNumOfitemInCart = () => {
+  document.getElementById("itemNumber").innerHTML = cartListItems.length;
+};
 
 //chạy sau khi onclick"add to cart"
 renderCart = () => {
-  console.log("List hiện tại: ", cartListItems);
-  console.log(cartListItems[0]);
+  let contentHTML = ``;
+  cartListItems.forEach((item) => {
+    priceMul = () => {
+      let priceMulValue = document.getElementById("itemNumber").textContent;
+      if (priceMulValue == 0) {
+        return 1;
+      } else {
+        return priceMulValue;
+      }
+    };
+
+    let content = `
+    <div class="item">
+    <div class="imgAndInfo flex">
+      <img
+        src="${item.img}"
+        alt="Photo"
+        width="50%"
+      />
+      <div class="info flex flex-col gap-5">
+        <p class="font-bold">${item.name}</p>
+        <div class="desc">
+          <p>Screen:${item.screen}</p>
+          <p>Back Camera:${item.backCamera}</p>
+          <p>Font Camera:${item.frontCamera}</p>
+        </div>
+        <a class="text-red-600 underline onclick="removeFromCart()">Remove</a>
+      </div>
+    </div>
+    <div class="quantity flex justify-between px-6 py-5">
+      <div class="right flex gap-5">
+        <p class="font-bold">Quantity:</p>
+        <div class="plusAndMinus space-x-1">
+          <i class="fa fa-minus-circle hover:text-blue-900" onclick="decreaseNumber(${item.price})"></i>
+          <span id="CartItemNumber">0</span>
+          <i class="fa fa-plus-circle hover:text-blue-900" onclick="increaseNumber(${item.price})"></i>
+        </div>
+      </div>
+      <div class="left font-bold" id="itemPrice">$${item.price}</div>
+    </div>
+  </div>
+    `;
+    contentHTML += content;
+  });
+  document.getElementById("cart-item").innerHTML = contentHTML;
 };
 checkCart = () => {};

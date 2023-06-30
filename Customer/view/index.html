@@ -105,9 +105,15 @@
                       <div class="right flex gap-5">
                         <p class="font-bold">Quantity:</p>
                         <div class="plusAndMinus space-x-1">
-                          <i class="fa fa-minus-circle hover:text-blue-900"></i>
-                          <span id="itemNumber">0</span>
-                          <i class="fa fa-plus-circle hover:text-blue-900"></i>
+                          <i
+                            class="fa fa-minus-circle hover:text-blue-900"
+                            onclick="decreaseNumber()"
+                          ></i>
+                          <span id="CartItemNumber">0</span>
+                          <i
+                            class="fa fa-plus-circle hover:text-blue-900"
+                            onclick="increaseNumber()"
+                          ></i>
                         </div>
                       </div>
                       <div class="left font-bold">$0</div>
@@ -205,6 +211,7 @@
                     class="flex justify-center text-xs text-black font-bold"
                     id="itemNumber"
                   >
+                    <!-- coiiiiiiiiiiiiiii  -->
                     0
                   </span>
                 </div>

@@ -109,3 +109,26 @@ transferToLocal = (pushList, LocalName) => {
   let data = JSON.stringify(pushList);
   localStorage.setItem(LocalName, data);
 };
+
+decreaseNumber = (price) => {
+  const CartItemNumber_ID = document.getElementById("CartItemNumber");
+  let CartItemValue = CartItemNumber_ID.innerText;
+  if (CartItemValue != 0) {
+    CartItemValue--;
+    CartItemNumber_ID.innerText = CartItemValue;
+  }
+  ///cal price and DOM
+  let totalPrice = price * CartItemValue;
+  document.getElementById("itemPrice").innerText = `$${totalPrice}`;
+};
+
+increaseNumber = (price) => {
+  const CartItemNumber_ID = document.getElementById("CartItemNumber");
+  let CartItemValue = CartItemNumber_ID.innerText;
+  CartItemValue++;
+  CartItemNumber_ID.innerText = CartItemValue;
+
+  ///cal price and DOM
+  let totalPrice = price * CartItemValue;
+  document.getElementById("itemPrice").innerText = `$${totalPrice}`;
+};
