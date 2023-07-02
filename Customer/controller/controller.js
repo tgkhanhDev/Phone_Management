@@ -7,6 +7,22 @@ returnIDforEachType = (item) => {
     return "xiaomi-frame";
   }
 };
+sortSameObjectInArray = (arr) =>{
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    let count = 0;
+    for (let j = 0; j < arr.length; j++) {
+      if (_.isEqual(arr[i], arr[j])) {
+        count++;
+      }
+    }
+    if (count === 1) {
+      newArr.push(arr[i]);
+    }
+  }
+  console.log(newArr);
+  return newArr;
+}
 
 renderProductList = (productArr) => {
   var contentHTML_IP = "";

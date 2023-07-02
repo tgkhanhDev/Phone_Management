@@ -61,7 +61,7 @@ footer a {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  transition: 1s;
+  transition: 500ms;
 }
 #navbar #cartPage {
   position: absolute;
@@ -69,5 +69,5 @@ footer a {
   right: 0;
   height: 90vh;
   width: 30vw;
-  transition: 1s;
+  transition: 500ms;
 }/*# sourceMappingURL=index.css.map */

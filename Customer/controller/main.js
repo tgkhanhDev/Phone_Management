@@ -77,7 +77,7 @@ showPage = () => {
     setTimeout(function () {
       cartPage.classList.toggle("hidden");
       cartLayer.classList.toggle("hidden");
-    }, 1000);
+    }, 500);
   }
 };
 //=====================
@@ -94,20 +94,19 @@ addCart = (productId) => {
       res.data.forEach((item) => {
         if (item.id == productId) {
           cartListItems.push(res.data[i]);
-          //kiểm tra trùng => return số lượng phần tử bị trùng
-          console.log("Ngoài products: ", cartListItems); //======================== Lỗi đây
-
+          
           let numOfItem = numOfItemDuplicate(productId);
-
           ///số phần tử trùng >1 thì mới render lên cart
-          if (numOfItem == 1) {
+          if(numOfItem ==1){
+            console.log("Arr if", cartListItems);
             //update số lượng
             RenderNumOfitemInCart();
             // update Item
             renderCart();
           } //tồn tại item sẵn thì ko push
           else {
-            /// error here
+            console.log("Arr else", cartListItems);
+            renderCart();
             increaseNumberForPage(item.price, item.id);
             //update số lượng
             RenderNumOfitemInCart();
@@ -119,7 +118,6 @@ addCart = (productId) => {
     .catch((err) => {
       console.log(err);
     });
-  console.log("Ngoài products: ", cartListItems); /// LỖI ở đây===========================================
 };
 
 //======================
@@ -134,9 +132,37 @@ RenderNumOfitemInCart = () => {
 };
 
 //chạy sau khi onclick"add to cart"
+function removeDuplicatesPreserveOrder(arr) {
+  var uniqueElements = [];
+  
+  for (var i = 0; i < arr.length; i++) {
+      var foundDuplicate = false;
+      for (var j = 0; j < uniqueElements.length; j++) {
+          if (isEqual(arr[i], uniqueElements[j])) {
+              foundDuplicate = true;
+              break;
+          }
+      }
+      if (!foundDuplicate) {
+          uniqueElements.push(arr[i]);
+      }
+  }
+
+  return uniqueElements;
+}
+
+// A helper function to check if two objects are equal
+function isEqual(obj1, obj2) {
+  return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
 renderCart = () => {
   let contentHTML = ``;
-  cartListItems.forEach((item) => {
+  let newArr=[];
+  newArr=removeDuplicatesPreserveOrder(cartListItems);
+
+  console.log("cartArr: ", cartListItems);
+  console.log("newArr: ", newArr);
+  newArr.forEach((item) => {
     priceMul = () => {
       let priceMulValue = document.getElementById("itemNumber").textContent;
       if (priceMulValue == 0) {
@@ -177,7 +203,8 @@ renderCart = () => {
     </div>
   </div>
     `;
-    contentHTML += content;
+    contentHTML+=content;
+
   });
   document.getElementById("cart-item").innerHTML = contentHTML;
 };
@@ -241,7 +268,6 @@ emptyPage = () => {
   for (let i = cartListItems.length - 1; i >= 0; i--) {
     cartListItems.splice(i, 1);
   }
-  renderProductList();
   renderCart();
   RenderNumOfitemInCart();
   //refresh tinh tien

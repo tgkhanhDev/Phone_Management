@@ -74,7 +74,7 @@ footer{
     width: 100vw;
     height: 100vh;
     z-index: 1;
-    transition: 1s;
+    transition: 500ms;
   }
   #cartPage{
     position: absolute;
@@ -82,6 +82,6 @@ footer{
     right: 0;
     height: 90vh;
     width: 30vw;
-    transition: 1s;
+    transition:  500ms;
   }
 }
