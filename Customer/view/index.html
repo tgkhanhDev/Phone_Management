@@ -123,43 +123,53 @@
                 <div class="absolute bg-gray-200 w-full my-8 px-6 py-10">
                   <div class="flex justify-between py-3">
                     <p class="text-gray-500">Subtotal</p>
-                    <p>$0</p>
+                    <span id="subtotal">$0</span>
                   </div>
                   <div class="flex justify-between py-3">
                     <div class="flex items-baseline gap-2">
                       <p class="text-gray-500">Shipping</p>
                       <p class="text-xs text-gray-500">(estimated)</p>
                     </div>
-                    <p>$0</p>
+                    <span id="ship">$0</span>
                   </div>
                   <div class="flex justify-between py-3">
                     <div class="flex items-baseline gap-2">
                       <p class="text-gray-500">Tax</p>
                       <p class="text-xs text-gray-500">(estimated)</p>
                     </div>
-                    <p>$0</p>
+                    <span id="tax">$0</span>
                   </div>
                   <div class="flex justify-between py-3">
                     <p class="text-xl font-bold">Total</p>
-                    <p class="text-xl font-bold">$0</p>
+                    <span class="text-xl font-bold" id="total">$0</span>
                   </div>
                   <p class="py-8 text-xs text-gray-500">
                     Estimation based on New York, United States
                   </p>
                   <div class="btn flex justify-between text-white">
                     <div class="leftBtn flex gap-4">
-                      <button class="bg-blue-600 px-3 py-2">
+                      <button
+                        class="bg-blue-600 px-3 py-2"
+                        onclick="showPage()"
+                      >
                         Continue Shopping
                       </button>
                       <div
                         class="emptyBtn flex items-baseline gap-2 bg-red-600 px-7 py-2"
                       >
                         <i class="fa fa-trash"></i>
-                        <button>Empty Cart</button>
+                        <button class="w-full h-full" onclick="emptyPage()">
+                          Empty Cart
+                        </button>
                       </div>
                     </div>
-                    <div class="rightBtn bg-yellow-600 px-3 py-2">
-                      <button>Pay Now</button>
+                    <div>
+                      <button
+                        onclick="pay()"
+                        class="rightBtn bg-yellow-600 px-3 py-2"
+                      >
+                        Pay Now
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -360,6 +370,8 @@
       </section>
       <section class="copyright"></section>
     </footer>
+    <!-- sweetalert  -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Axios -->
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"

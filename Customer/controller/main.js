@@ -94,11 +94,24 @@ addCart = (productId) => {
       res.data.forEach((item) => {
         if (item.id == productId) {
           cartListItems.push(res.data[i]);
-          //update số lượng
-          RenderNumOfitemInCart();
+          //kiểm tra trùng => return số lượng phần tử bị trùng
+          console.log("Ngoài products: ", cartListItems); //======================== Lỗi đây
 
-          // update Item
-          renderCart();
+          let numOfItem = numOfItemDuplicate(productId);
+
+          ///số phần tử trùng >1 thì mới render lên cart
+          if (numOfItem == 1) {
+            //update số lượng
+            RenderNumOfitemInCart();
+            // update Item
+            renderCart();
+          } //tồn tại item sẵn thì ko push
+          else {
+            /// error here
+            increaseNumberForPage(item.price, item.id);
+            //update số lượng
+            RenderNumOfitemInCart();
+          }
         }
         i++;
       });
@@ -106,6 +119,7 @@ addCart = (productId) => {
     .catch((err) => {
       console.log(err);
     });
+  console.log("Ngoài products: ", cartListItems); /// LỖI ở đây===========================================
 };
 
 //======================
@@ -147,19 +161,19 @@ renderCart = () => {
           <p>Back Camera:${item.backCamera}</p>
           <p>Font Camera:${item.frontCamera}</p>
         </div>
-        <a class="text-red-600 underline onclick="removeFromCart()">Remove</a>
+        <a class="text-red-600 underline cursor-pointer" onclick="removeFromCart(${item.id})">Remove</a>
       </div>
     </div>
     <div class="quantity flex justify-between px-6 py-5">
       <div class="right flex gap-5">
         <p class="font-bold">Quantity:</p>
-        <div class="plusAndMinus space-x-1">
-          <i class="fa fa-minus-circle hover:text-blue-900" onclick="decreaseNumber(${item.price})"></i>
-          <span id="CartItemNumber">0</span>
-          <i class="fa fa-plus-circle hover:text-blue-900" onclick="increaseNumber(${item.price})"></i>
+        <div class="plusAndMinus space-x-1" >
+          <i class="fa fa-minus-circle hover:text-blue-900" onclick="decreaseNumber(${item.price}, ${item.id})"></i>
+          <span id="CartItemNumber${item.id}">1</span>
+          <i class="fa fa-plus-circle hover:text-blue-900" onclick="increaseNumber(${item.price}, ${item.id})"></i>
         </div>
       </div>
-      <div class="left font-bold" id="itemPrice">$${item.price}</div>
+      <div class="left font-bold" id="itemPrice${item.id}">$${item.price}</div>
     </div>
   </div>
     `;
@@ -167,4 +181,89 @@ renderCart = () => {
   });
   document.getElementById("cart-item").innerHTML = contentHTML;
 };
-checkCart = () => {};
+removeFromCart = (id) => {
+  //Phải loop ngược vì khi splice, arraylength bị giảm đi
+  for (let i = cartListItems.length - 1; i >= 0; i--) {
+    if (cartListItems[i].id == id) {
+      cartListItems.splice(i, 1);
+    }
+  }
+  //renderCart sau xóa
+  renderCart();
+  //reder number item
+  RenderNumOfitemInCart();
+};
+numOfItemDuplicate = (id) => {
+  let dup = 0;
+  for (let i = 0; i < cartListItems.length; i++) {
+    if (cartListItems[i].id == id) {
+      dup++;
+    }
+  }
+  return dup;
+};
+
+domToSubtotal = () => {
+  var sum = 0;
+  for (let i = 0; i < cartListItems.length; i++) {
+    cartListItems[i].price = parseInt(cartListItems[i].price);
+    sum += cartListItems[i].price;
+  }
+  document.getElementById("subtotal").innerText = `$${sum}`;
+  return sum;
+};
+
+domToShipping = (itemValue) => {
+  let ship = 0;
+  if (itemValue == 0) {
+    document.getElementById("ship").innerHTML = "$0";
+    ship = 0;
+  } else {
+    document.getElementById("ship").innerHTML = "$10";
+    ship = 10;
+  }
+  return ship;
+};
+
+domToTax = (money) => {
+  let tax = money * 0.1;
+  document.getElementById("tax").innerHTML = `$${tax}`;
+  return tax;
+};
+
+domToTotal = (subtotal, ship, tax) => {
+  let totalPrice = subtotal + ship + tax;
+  document.getElementById("total").innerHTML = `$${totalPrice}`;
+};
+///Pay
+
+emptyPage = () => {
+  for (let i = cartListItems.length - 1; i >= 0; i--) {
+    cartListItems.splice(i, 1);
+  }
+  renderProductList();
+  renderCart();
+  RenderNumOfitemInCart();
+  //refresh tinh tien
+  document.getElementById("subtotal").innerText = `$0`;
+  document.getElementById("ship").innerHTML = "$0";
+  document.getElementById("tax").innerHTML = "$0";
+  document.getElementById("total").innerHTML = "$0";
+};
+
+//Sweet Alert
+let showSuccess = (title = "Thành công" /*default param*/) => {
+  Swal.fire({
+    position: "mid",
+    icon: "success",
+    title,
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  });
+};
+
+pay = () => {
+  emptyPage();
+  showSuccess("Thanh toán thành công");
+};

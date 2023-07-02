@@ -109,26 +109,71 @@ transferToLocal = (pushList, LocalName) => {
   let data = JSON.stringify(pushList);
   localStorage.setItem(LocalName, data);
 };
-
-decreaseNumber = (price) => {
-  const CartItemNumber_ID = document.getElementById("CartItemNumber");
+//phải xóa ptử
+decreaseNumber = (price, id) => {
+  const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
   let CartItemValue = CartItemNumber_ID.innerText;
   if (CartItemValue != 0) {
     CartItemValue--;
     CartItemNumber_ID.innerText = CartItemValue;
+  } else if (CartItemValue == 0) {
+    removeFromCart();
   }
   ///cal price and DOM
   let totalPrice = price * CartItemValue;
-  document.getElementById("itemPrice").innerText = `$${totalPrice}`;
-};
+  document.getElementById(`itemPrice${id}`).innerText = `$${totalPrice}`;
+  //Xóa 1 Array bằng ID
+  for (let i = cartListItems.length - 1; i >= 0; i--) {
+    if (cartListItems[i].id == id) {
+      cartListItems.splice(i, 1);
+      break;
+    }
+  }
+  RenderNumOfitemInCart();
 
-increaseNumber = (price) => {
-  const CartItemNumber_ID = document.getElementById("CartItemNumber");
+  // tinhtien
+  let subMoney = domToSubtotal();
+  let ship = domToShipping(CartItemValue);
+  let tax = domToTax(subMoney);
+  domToTotal(subMoney, ship, tax);
+};
+//phải add ptử
+increaseNumberForPage = (price, id) => {
+  const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
   let CartItemValue = CartItemNumber_ID.innerText;
   CartItemValue++;
   CartItemNumber_ID.innerText = CartItemValue;
-
   ///cal price and DOM
   let totalPrice = price * CartItemValue;
-  document.getElementById("itemPrice").innerText = `$${totalPrice}`;
+  document.getElementById(`itemPrice${id}`).innerText = `$${totalPrice}`;
+
+  // tinhtien
+  let subMoney = domToSubtotal();
+  let ship = domToShipping(CartItemValue);
+  let tax = domToTax(subMoney);
+  domToTotal(subMoney, ship, tax);
+};
+increaseNumber = (price, id) => {
+  const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
+  let CartItemValue = CartItemNumber_ID.innerText;
+  CartItemValue++;
+  CartItemNumber_ID.innerText = CartItemValue;
+  ///cal price and DOM
+  let totalPrice = price * CartItemValue;
+  document.getElementById(`itemPrice${id}`).innerText = `$${totalPrice}`;
+
+  //add vào Array bằng ID
+  for (let i = 0; i < cartListItems.length; i++) {
+    if (cartListItems[i].id == id) {
+      cartListItems.push(cartListItems[i]);
+      console.log(cartListItems);
+      break;
+    }
+  }
+  RenderNumOfitemInCart();
+  // tinhtien
+  let subMoney = domToSubtotal();
+  let ship = domToShipping(CartItemValue);
+  let tax = domToTax(subMoney);
+  domToTotal(subMoney, ship, tax);
 };
