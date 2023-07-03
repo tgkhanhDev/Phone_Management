@@ -7,22 +7,6 @@ returnIDforEachType = (item) => {
     return "xiaomi-frame";
   }
 };
-sortSameObjectInArray = (arr) =>{
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    let count = 0;
-    for (let j = 0; j < arr.length; j++) {
-      if (_.isEqual(arr[i], arr[j])) {
-        count++;
-      }
-    }
-    if (count === 1) {
-      newArr.push(arr[i]);
-    }
-  }
-  console.log(newArr);
-  return newArr;
-}
 
 renderProductList = (productArr) => {
   var contentHTML_IP = "";
@@ -72,9 +56,8 @@ renderProductList = (productArr) => {
                     <!-- original price -->
                   <p class="text-lg">$${item.price}</p>
                     <!-- Fake no-discount price  -->
-                  <p class="text-red-500 line-through">$${
-                    parseInt(item.price) + 300
-                  }</p>
+                  <p class="text-red-500 line-through">$${parseInt(item.price) + 300
+      }</p>
                 </div>
                 </div>
                 <div>
@@ -120,11 +103,146 @@ renderProductList = (productArr) => {
   }
 };
 
+
 // lấy dữ liệu từ local
 transferToLocal = (pushList, LocalName) => {
   let data = JSON.stringify(pushList);
   localStorage.setItem(LocalName, data);
 };
+
+//renderSpanCart
+RenderNumOfitemInCart = () => {
+  document.getElementById("itemNumber").innerHTML = cartListItems.length;
+  document.getElementById("itemNumber_hidden").innerHTML = cartListItems.length;
+};
+
+//chạy sau khi onclick"add to cart"
+sortSameEle = (arr) => {
+  let newArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let exists = false;
+    for (let j = 0; j < newArr.length; j++) {
+      if (arr[i].id === newArr[j].id) {
+        exists = true;
+        break;
+      }
+    }
+    if (!exists) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+renderCart = () => {
+  let contentHTML = ``;
+  let newArr = [];
+  newArr=sortSameEle(cartListItems);
+  newArr.forEach((item) => {
+    priceMul = () => {
+      let priceMulValue = document.getElementById("itemNumber").textContent;
+      if (priceMulValue == 0) {
+        return 1;
+      } else {
+        return priceMulValue;
+      }
+    };
+
+    let content = `
+    <div class="item">
+    <div class="imgAndInfo flex">
+      <img
+        src="${item.img}"
+        alt="Photo"
+        width="50%"
+      />
+      <div class="info flex flex-col gap-5">
+        <p class="font-bold">${item.name}</p>
+        <div class="desc">
+          <p>Screen:${item.screen}</p>
+          <p>Back Camera:${item.backCamera}</p>
+          <p>Font Camera:${item.frontCamera}</p>
+        </div>
+        <a class="text-red-600 underline cursor-pointer" onclick="removeFromCart(${item.id})">Remove</a>
+      </div>
+    </div>
+    <div class="quantity flex justify-between px-6 py-5">
+      <div class="right flex gap-5">
+        <p class="font-bold">Quantity:</p>
+        <div class="plusAndMinus space-x-1" >
+          <i class="fa fa-minus-circle hover:text-blue-900" onclick="decreaseNumber(${item.price}, ${item.id})"></i>
+          <span id="CartItemNumber${item.id}">1</span>
+          <i class="fa fa-plus-circle hover:text-blue-900" onclick="increaseNumber(${item.price}, ${item.id})"></i>
+        </div>
+      </div>
+      <div class="left font-bold" id="itemPrice${item.id}">$${item.price}</div>
+    </div>
+  </div>
+    `;
+    contentHTML += content;
+
+  });
+  document.getElementById("cart-item").innerHTML = contentHTML;
+};
+
+numOfItemDuplicate = (id) => {
+  let dup = 0;
+  for (let i = 0; i < cartListItems.length; i++) {
+    if (cartListItems[i].id == id) {
+      dup++;
+    }
+  }
+  return dup;
+};
+
+
+//Dùng để tính tiền
+domToSubtotal = () => {
+  var sum = 0;
+  for (let i = 0; i < cartListItems.length; i++) {
+    cartListItems[i].price = parseInt(cartListItems[i].price);
+    sum += cartListItems[i].price;
+  }
+  document.getElementById("subtotal").innerText = `$${sum}`;
+  return sum;
+};
+
+domToShipping = (itemValue) => {
+  let ship = 0;
+  if (itemValue == 0) {
+    document.getElementById("ship").innerHTML = "$0";
+    ship = 0;
+  } else {
+    document.getElementById("ship").innerHTML = "$10";
+    ship = 10;
+  }
+  return ship;
+};
+
+domToTax = (money) => {
+  let tax = money * 0.1;
+  document.getElementById("tax").innerHTML = `$${tax}`;
+  return tax;
+};
+
+domToTotal = (subtotal, ship, tax) => {
+  let totalPrice = subtotal + ship + tax;
+  document.getElementById("total").innerHTML = `$${totalPrice}`;
+};
+    //Sweet Alert
+let showSuccess = (title = "Thành công" /*default param*/) => {
+  Swal.fire({
+    position: "mid",
+    icon: "success",
+    title,
+    showConfirmButton: false,
+    timer: 1500,
+    timerProgressBar: true,
+  });
+};
+
+
 //phải xóa ptử
 decreaseNumber = (price, id) => {
   const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
@@ -154,20 +272,24 @@ decreaseNumber = (price, id) => {
   domToTotal(subMoney, ship, tax);
 };
 //phải add ptử
-increaseNumberForPage = (price, id) => {
-  const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
-  let CartItemValue = CartItemNumber_ID.innerText;
-  CartItemValue++;
-  CartItemNumber_ID.innerText = CartItemValue;
-  ///cal price and DOM
-  let totalPrice = price * CartItemValue;
-  document.getElementById(`itemPrice${id}`).innerText = `$${totalPrice}`;
+increaseNumberForPage = () => {
+  let sortedArr = []
+  sortedArr = sortSameEle(cartListItems);
 
-  // tinhtien
-  let subMoney = domToSubtotal();
-  let ship = domToShipping(CartItemValue);
-  let tax = domToTax(subMoney);
-  domToTotal(subMoney, ship, tax);
+  for (let i = 0; i < sortedArr.length; i++) {
+    let dupItem = numOfItemDuplicate(sortedArr[i].id);
+    let CartItemNumber_ID = document.getElementById(`CartItemNumber${sortedArr[i].id}`);
+    CartItemNumber_ID.innerText = dupItem;
+
+    ///cal price and DOM
+    let totalPrice = sortedArr[i].price * dupItem;
+    document.getElementById(`itemPrice${sortedArr[i].id}`).innerText = `$${totalPrice}`;
+    // tinhtien
+    let subMoney = domToSubtotal();
+    let ship = domToShipping(dupItem);
+    let tax = domToTax(subMoney);
+    domToTotal(subMoney, ship, tax);
+  }
 };
 increaseNumber = (price, id) => {
   const CartItemNumber_ID = document.getElementById(`CartItemNumber${id}`);
@@ -182,7 +304,6 @@ increaseNumber = (price, id) => {
   for (let i = 0; i < cartListItems.length; i++) {
     if (cartListItems[i].id == id) {
       cartListItems.push(cartListItems[i]);
-      console.log(cartListItems);
       break;
     }
   }
