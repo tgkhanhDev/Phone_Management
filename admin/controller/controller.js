@@ -43,7 +43,7 @@ function getInfo() {
     }
 }
 function setInfo(item) {
-    console.log(item);
+
     document.getElementById("phoneName").value = item.name;
     document.getElementById("phonePrice").value = item.price;
     document.getElementById("phoneScreen").value = item.screen;

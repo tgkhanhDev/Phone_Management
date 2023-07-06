@@ -3,6 +3,7 @@ function fetchProductList() {
     productsServ.getList()
         .then((res) => {
             renderList(res.data);
+            console.log(res.data);
 
         })
         .catch((err) => {
@@ -25,9 +26,11 @@ function deleteProduct(id) {
 function addPhone() {
     onLoading();
     if (validate(getInfo())) {
-
+        console.log(getInfo());
         productsServ.add(getInfo())
+
             .then((res) => {
+                console.log(getInfo());
                 fetchProductList();
                 offLoading();
             })
