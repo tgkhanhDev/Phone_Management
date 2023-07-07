@@ -257,6 +257,7 @@ decreaseNumber = (price, id) => {
   for (let i = cartListItems.length - 1; i >= 0; i--) {
     if (cartListItems[i].id == id) {
       cartListItems.splice(i, 1);
+      transferToLocal(cartListItems, "CartList");
       break;
     }
   }
@@ -305,6 +306,7 @@ increaseNumber = (price, id) => {
   for (let i = 0; i < cartListItems.length; i++) {
     if (cartListItems[i].id == id) {
       cartListItems.push(cartListItems[i]);
+      transferToLocal(cartListItems, "CartList");
       break;
     }
   }

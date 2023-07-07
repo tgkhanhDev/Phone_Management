@@ -7,7 +7,6 @@ if (dataJSON_cartListItem != null) {
   RenderNumOfitemInCart();
   increaseNumberForPage();
 }
-
 // nav button
 const btn = document.querySelector("button.mobile-menu-button");
 const menu = document.querySelector(".mobile-menu");
@@ -70,7 +69,6 @@ fetchProductList();
 //Cart==================
 var checktime = 0;
 showPage = () => {
-  checktime++;
   var cartLayer = document.getElementById("cartLayer");
   var cartPage = document.getElementById("cartPage");
   var page = document.getElementById("page");
