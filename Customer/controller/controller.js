@@ -17,7 +17,7 @@ renderProductList = (productArr) => {
     var productID = returnIDforEachType(item);
     var content = `
             <div
-                class="phoneItem    relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl justify-between" id="${productID}"
+                class="phoneItem relative flex flex-col gap-4 py-4 px-6 shadow-2xl rounded-2xl justify-between" id="${productID}"
               >
                 <!-- layer  -->
                 <div
