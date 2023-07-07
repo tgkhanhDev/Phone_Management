@@ -16,6 +16,7 @@ let productsServ = {
         return axios({
             url: BASE_URL,
             method: "POST",
+            data: product,
         })
     },
     getById: (id) => {
