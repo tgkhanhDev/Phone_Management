@@ -23,7 +23,7 @@ renderProductList = (productArr) => {
                 <div
                   class="absolute w-full h-full top-0 left-0 rounded-2xl bg-black bg-opacity-80 text-white py-4 px-6 flex flex-col justify-between"
                 >
-                  <p class="w-full h-1/3 flex justify-center text-4xl">
+                  <p class="w-full h-1/3 flex justify-center text-3xl">
                     Specifications
                   </p>
                   <div class="screen flex flex-col gap-2">
@@ -56,8 +56,9 @@ renderProductList = (productArr) => {
                     <!-- original price -->
                   <p class="text-lg">$${item.price}</p>
                     <!-- Fake no-discount price  -->
-                  <p class="text-red-500 line-through">$${parseInt(item.price) + 300
-      }</p>
+                  <p class="text-red-500 line-through">$${
+                    parseInt(item.price) + 300
+                  }</p>
                 </div>
                 </div>
                 <div>
@@ -103,7 +104,6 @@ renderProductList = (productArr) => {
   }
 };
 
-
 // lấy dữ liệu từ local
 transferToLocal = (pushList, LocalName) => {
   let data = JSON.stringify(pushList);
@@ -133,12 +133,12 @@ sortSameEle = (arr) => {
     }
   }
   return newArr;
-}
+};
 
 renderCart = () => {
   let contentHTML = ``;
   let newArr = [];
-  newArr=sortSameEle(cartListItems);
+  newArr = sortSameEle(cartListItems);
   newArr.forEach((item) => {
     priceMul = () => {
       let priceMulValue = document.getElementById("itemNumber").textContent;
@@ -181,7 +181,6 @@ renderCart = () => {
   </div>
     `;
     contentHTML += content;
-
   });
   document.getElementById("cart-item").innerHTML = contentHTML;
 };
@@ -195,7 +194,6 @@ numOfItemDuplicate = (id) => {
   }
   return dup;
 };
-
 
 //Dùng để tính tiền
 domToSubtotal = () => {
@@ -230,7 +228,7 @@ domToTotal = (subtotal, ship, tax) => {
   let totalPrice = subtotal + ship + tax;
   document.getElementById("total").innerHTML = `$${totalPrice}`;
 };
-    //Sweet Alert
+//Sweet Alert
 let showSuccess = (title = "Thành công" /*default param*/) => {
   Swal.fire({
     position: "mid",
@@ -241,7 +239,6 @@ let showSuccess = (title = "Thành công" /*default param*/) => {
     timerProgressBar: true,
   });
 };
-
 
 //phải xóa ptử
 decreaseNumber = (price, id) => {
@@ -273,17 +270,21 @@ decreaseNumber = (price, id) => {
 };
 //phải add ptử
 increaseNumberForPage = () => {
-  let sortedArr = []
+  let sortedArr = [];
   sortedArr = sortSameEle(cartListItems);
 
   for (let i = 0; i < sortedArr.length; i++) {
     let dupItem = numOfItemDuplicate(sortedArr[i].id);
-    let CartItemNumber_ID = document.getElementById(`CartItemNumber${sortedArr[i].id}`);
+    let CartItemNumber_ID = document.getElementById(
+      `CartItemNumber${sortedArr[i].id}`
+    );
     CartItemNumber_ID.innerText = dupItem;
 
     ///cal price and DOM
     let totalPrice = sortedArr[i].price * dupItem;
-    document.getElementById(`itemPrice${sortedArr[i].id}`).innerText = `$${totalPrice}`;
+    document.getElementById(
+      `itemPrice${sortedArr[i].id}`
+    ).innerText = `$${totalPrice}`;
     // tinhtien
     let subMoney = domToSubtotal();
     let ship = domToShipping(dupItem);
