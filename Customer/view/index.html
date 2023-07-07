@@ -75,7 +75,7 @@
               ></div>
               <div
                 id="cartPage"
-                class="hidden bg-white z-10 text-black py-6 relative w-1/3 overflow-auto opacity-0"
+                class="hidden bg-white z-10 text-black py-6 relative overflow-auto opacity-0 w-1/3"
               >
                 <div class="cart-title flex flex-col gap-2 px-6 py-5">
                   <p class="text-4xl">Shopping Cart</p>
@@ -154,14 +154,13 @@
                       >
                         Continue Shopping
                       </button>
-                      <div
-                        class="emptyBtn flex items-baseline gap-2 bg-red-600 px-7 py-2"
+                      <button
+                        class="flex items-center mr-5 bg-red-600 px-7 py-2"
+                        onclick="showPage()"
                       >
-                        <i class="fa fa-trash"></i>
-                        <button class="w-full h-full" onclick="emptyPage()">
-                          Empty Cart
-                        </button>
-                      </div>
+                        <i class="fa fa-trash mr-1"></i>
+                        Empty Cart
+                      </button>
                     </div>
                     <div>
                       <button
@@ -199,7 +198,7 @@
           <div class="mobile-menu md:hidden">
             <div class="block md:hidden py-2 px-4">
               <a
-                href="#"
+                href="../../index.html"
                 class="flex flex-col items-center px-3 hover:text-gray-400"
               >
                 <i class="text-2xl fa fa-home"></i>
