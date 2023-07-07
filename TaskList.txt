@@ -1,2 +1,5 @@
 Link task:
 https://docs.google.com/spreadsheets/d/1p5m2LQDzJ5cBLE410Zxhpxv9q1P0gg71gcDgiyJJqtQ/edit?fbclid=IwAR3HH-Nhy0CVVtMI__O0H_5mXTrIM5dYeWWFV9j2_R5g_1VCEDBIc5xfnBM&pli=1#gid=0
+
+Link Deploy:
+https://profound-cajeta-44b921.netlify.app/index.html

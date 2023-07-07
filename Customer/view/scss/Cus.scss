@@ -19,7 +19,7 @@ header{
 }
 
 #top-page{
-  background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.8)), url(../../CAPSTONE_IMG/header/banner_bg.jpg);
+  background: linear-gradient(rgba(29, 38, 113, 0.8), rgba(195, 55, 100, 0.8)), url(../../../asset/Customer_IMG/banner_bg.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -80,11 +80,9 @@ body{
   }
   #cartPage{
     position: absolute;
-    width: 100%; /* Modify the width to occupy the entire available width */
-    max-width: 30rem; 
     top:16vh;
     height: 90vh;
-    width: 30vw;
+    width: 40vw;
     transition:  500ms;
     z-index: 2;
   }
@@ -97,5 +95,14 @@ body {
     position: fixed;
     z-index:10;
     transition: 500ms;
+  }
+}
+
+//Responsive
+@media only screen and (max-width: 768px){
+  body{
+    #cartPage{
+      width: 70vw;
+    }
   }
 }

@@ -36,7 +36,7 @@ renderProductList = (productArr) => {
                       ><p>click here for more details</p></a
                     >
                   </div>
-                  <div class="inline-block flex justify-center">
+                  <div class="flex justify-center">
                     <button class="bg-yellow-600 px-4 py-2 rounded-2xl hover:bg-yellow-700 transition duration-150 ease-out hover:ease-in" 
                     onclick="addCart(${item.id})"
                     >Add to cart</button>

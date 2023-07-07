@@ -146,6 +146,7 @@ removeFromCart = (id) => {
   renderCart();
   //reder number item
   RenderNumOfitemInCart();
+  emptyPage();
   transferToLocal(cartListItems, "CartList");
 };
 
