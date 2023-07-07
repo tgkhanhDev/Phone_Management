@@ -68,7 +68,7 @@ renderProductList = (productArr) => {
                     ${item.type}
                   </div>
                 </div>
-                <p>Description:${item.desc}</p>
+                <p class="overflow-auto">Description:${item.desc}</p>
                 <div class="flex justify-between">
                   <div class="rate text-yellow-400">
                     <i class="fa fa-star"></i>
