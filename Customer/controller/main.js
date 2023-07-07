@@ -73,8 +73,9 @@ showPage = () => {
   checktime++;
   var cartLayer = document.getElementById("cartLayer");
   var cartPage = document.getElementById("cartPage");
-  cartPage.classList.toggle("-right-96");
-  cartLayer.classList.toggle("dissapear");
+  var page = document.getElementById("page");
+  // cartPage.classList.toggle("-right-96");
+  page.classList.toggle("dissapear");
 
   // if (checktime % 2 != 0) {
   //   cartPage.classList.toggle("hidden");
