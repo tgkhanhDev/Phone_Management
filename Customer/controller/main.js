@@ -1,7 +1,7 @@
 let cartListItems = [];
 //render cartList từ local
 var dataJSON_cartListItem = localStorage.getItem("CartList");
-if(dataJSON_cartListItem != null){
+if (dataJSON_cartListItem != null) {
   cartListItems = JSON.parse(dataJSON_cartListItem);
   renderCart();
   RenderNumOfitemInCart();
@@ -63,7 +63,7 @@ fetchProductList = () => {
     .then((res) => {
       renderProductList(res.data);
     })
-    .catch((err) => { });
+    .catch((err) => {});
 };
 fetchProductList();
 
@@ -73,22 +73,24 @@ showPage = () => {
   checktime++;
   var cartLayer = document.getElementById("cartLayer");
   var cartPage = document.getElementById("cartPage");
+  cartPage.classList.toggle("-right-96");
+  cartLayer.classList.toggle("dissapear");
 
-  if (checktime % 2 != 0) {
-    cartPage.classList.toggle("hidden");
-    cartLayer.classList.toggle("hidden");
-    setTimeout(function () {
-      cartPage.classList.toggle("opacity-0");
-      cartLayer.classList.toggle("opacity-0");
-    }, 10);
-  } else if (checktime % 2 == 0) {
-    cartPage.classList.toggle("opacity-0");
-    cartLayer.classList.toggle("opacity-0");
-    setTimeout(function () {
-      cartPage.classList.toggle("hidden");
-      cartLayer.classList.toggle("hidden");
-    }, 500);
-  }
+  // if (checktime % 2 != 0) {
+  //   cartPage.classList.toggle("hidden");
+  //   cartLayer.classList.toggle("hidden");
+  //   setTimeout(function () {
+  //     cartPage.classList.toggle("opacity-0");
+  //     cartLayer.classList.toggle("opacity-0");
+  //   }, 10);
+  // } else if (checktime % 2 == 0) {
+  //   cartPage.classList.toggle("opacity-0");
+  //   cartLayer.classList.toggle("opacity-0");
+  //   setTimeout(function () {
+  //     cartPage.classList.toggle("hidden");
+  //     cartLayer.classList.toggle("hidden");
+  //   }, 500);
+  // }
 };
 //=====================
 
