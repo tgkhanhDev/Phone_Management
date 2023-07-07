@@ -67,7 +67,7 @@ footer a {
   position: absolute;
   width: 100%; /* Modify the width to occupy the entire available width */
   max-width: 30rem;
-  top: 10vh;
+  top: 15vh;
   right: 0;
   height: 90vh;
   width: 30vw;
